@@ -17,7 +17,7 @@ const getResults = async (searchType) => {
         headers: {
             'X-User-Agent': 'desktop',
             'X-Proxy-Location': 'EU',
-            'X-RapidAPI-Key': 'ZkT4FHNgOcmshNwbdoXx7sIfBVKWp1LzCS2jsn8gevRmabhtHe',
+            'X-RapidAPI-Key': 'your-api-key',
             'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
           }
     });
