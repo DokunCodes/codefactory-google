@@ -5,9 +5,9 @@ const ResultContext = createContext();
 const baseUrl = 'https://google-search3.p.rapidapi.com/api/v1';
 
 export const ResultContextProvider = ({children})=>{
-const [results,setResults] = useState([]);
+const [data,setData] = useState([]);
 const [loading,setLoading] = useState(false);
-const [searchTerm,setSearchTerm] = useState('');
+const [searchTerm,setSearchTerm] = useState('Dangote');
 
 const getResults = async (searchType) => {
     setLoading(true);
@@ -17,19 +17,25 @@ const getResults = async (searchType) => {
         headers: {
             'X-User-Agent': 'desktop',
             'X-Proxy-Location': 'EU',
-            'X-RapidAPI-Key': 'your-api-key',
+            'X-RapidAPI-Key': 'ZkT4FHNgOcmshNwbdoXx7sIfBVKWp1LzCS2jsn8gevRmabhtHe',
             'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
           }
     });
 
-    const data = await response.json();
-        console.log(data);
-    setResults(data);
+    const results = await response.json();
+        console.log(results);
+        if(searchType.includes('/news')){
+            setData(results.entries);
+        }
+        else if(searchType.includes('/image')){
+            setData(results.image_results)
+        }
+        else setData(results.results)
     setLoading(false);
 }
 
 return(
-    <ResultContext.Provider value={{getResults, results, searchTerm, setSearchTerm, loading}}>
+    <ResultContext.Provider value={{getResults, data, searchTerm, setSearchTerm, loading}}>
         {children}
     </ResultContext.Provider>
 )
