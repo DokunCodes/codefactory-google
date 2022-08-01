@@ -7,7 +7,7 @@ const baseUrl = 'https://google-search3.p.rapidapi.com/api/v1';
 export const ResultContextProvider = ({children})=>{
 const [data,setData] = useState([]);
 const [loading,setLoading] = useState(false);
-const [searchTerm,setSearchTerm] = useState('Dangote');
+const [searchTerm,setSearchTerm] = useState('');
 
 const getResults = async (searchType) => {
     setLoading(true);
@@ -17,7 +17,7 @@ const getResults = async (searchType) => {
         headers: {
             'X-User-Agent': 'desktop',
             'X-Proxy-Location': 'EU',
-            'X-RapidAPI-Key': 'your-api-key',
+            'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
             'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
           }
     });
